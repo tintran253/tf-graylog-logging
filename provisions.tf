@@ -19,6 +19,10 @@ resource "null_resource" "graylog" {
     content     = "${data.template_file.nginx.rendered}"
     destination = "/etc/nginx/sites-available/default"
   }
+  provisioner "file" {
+    content     = "${data.template_file.graylog.rendered}"
+    destination = "/etc/graylog/server/server.conf"
+  }
 
   provisioner "remote-exec" {
     inline = [

@@ -10,7 +10,7 @@ variable "ports" {
   type = "map"
 
   default = {
-    "elasticsearch"       = 9200
+    "elasticsearch" = 9200
   }
 }
 
@@ -24,6 +24,14 @@ data "template_file" "elastic_yml" {
   vars {
     elasticsearch_port = "${lookup(var.ports,"elasticsearch")}"
     slack_hook_url     = "${var.slack_hook_url}"
+  }
+}
+
+data "template_file" "graylog" {
+  template = "${file("./configs/graylog/server.conf")}"
+
+  vars {
+    ip = "${digitalocean_droplet.graylog.ipv4_address}"
   }
 }
 
