@@ -1,0 +1,9 @@
+do_token = "__"
+
+ssh_fingerprint = "__"
+
+ports = {
+  "elasticsearch"       = 9200
+}
+
+slack_hook_url = "__"
